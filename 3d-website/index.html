@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Body Language Decoder</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-cube"></div>
+            <p>Loading 3D Experience...</p>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Body<span>3D</span></div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#demo" class="nav-link">Demo</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">3D Body Language Decoder</h1>
+                <p class="hero-subtitle">Experience the future of human interaction analysis</p>
+                <button class="cta-button" onclick="start3DExperience()">Enter 3D World</button>
+            </div>
+            <div id="three-container" class="three-container"></div>
+        </section>
+
+        <section id="features" class="features-section">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-feature="gesture">
+                    <div class="feature-icon">👋</div>
+                    <h3>Gesture Recognition</h3>
+                    <p>Advanced AI-powered gesture detection and analysis</p>
+                </div>
+                <div class="feature-card" data-feature="emotion">
+                    <div class="feature-icon">😊</div>
+                    <h3>Emotion Detection</h3>
+                    <p>Real-time emotion analysis through body language</p>
+                </div>
+                <div class="feature-card" data-feature="3d">
+                    <div class="feature-icon">🎯</div>
+                    <h3>3D Visualization</h3>
+                    <p>Interactive 3D models of human poses and movements</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" class="demo-section">
+            <h2 class="section-title">Interactive Demo</h2>
+            <div class="demo-container">
+                <div class="demo-controls">
+                    <button class="control-btn" onclick="loadDemo('wave')">Wave Detection</button>
+                    <button class="control-btn" onclick="loadDemo('pose')">Pose Analysis</button>
+                    <button class="control-btn" onclick="loadDemo('emotion')">Emotion Recognition</button>
+                </div>
+                <div id="demo-canvas" class="demo-canvas"></div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <h2 class="section-title">About the Technology</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Our 3D Body Language Decoder uses cutting-edge computer vision and machine learning techniques to analyze human body language in real-time. The system creates detailed 3D models of human poses and movements, providing insights into emotions, intentions, and behavioral patterns.</p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Three.js</span>
+                    <span class="tech-tag">WebGL</span>
+                    <span class="tech-tag">TensorFlow.js</span>
+                    <span class="tech-tag">PoseNet</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 3D Body Language Decoder. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/three-config.js"></script>
+    <script src="../js/interactions.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
