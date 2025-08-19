@@ -77,7 +77,7 @@ class ThreeJSManager {
         const group = new THREE.Group();
 
         // Body
-        const bodyGeometry = new THREE.CapsuleGeometry(0.5, 2, 8, 16);
+const bodyGeometry = new THREE.BoxGeometry(0.5, 2, 0.5);
         const bodyMaterial = new THREE.MeshPhongMaterial({ 
             color: 0x6366f1,
             transparent: true,
@@ -101,7 +101,7 @@ class ThreeJSManager {
         group.add(head);
 
         // Arms
-        const armGeometry = new THREE.CapsuleGeometry(0.15, 1.2, 8, 16);
+        const armGeometry = new THREE.CylinderGeometry(0.15, 0.15, 1.2, 8);
         const armMaterial = new THREE.MeshPhongMaterial({ 
             color: 0xffdbac,
             transparent: true,
@@ -121,7 +121,7 @@ class ThreeJSManager {
         group.add(rightArm);
 
         // Legs
-        const legGeometry = new THREE.CapsuleGeometry(0.2, 1.5, 8, 16);
+        const legGeometry = new THREE.CylinderGeometry(0.2, 0.2, 1.5, 8);
         const legMaterial = new THREE.MeshPhongMaterial({ 
             color: 0x2d3748,
             transparent: true,
