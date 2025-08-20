@@ -3,16 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detection Page</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>3D Detection - Body Language Decoder</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/@tensorflow/tfjs/4.10.0/tf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/@tensorflow-models/pose-detection/2.1.0/pose-detection.min.js"></script>
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/training">Training</a>
-        <a href="/detection">Detection</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Body<span>3D</span></div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/training" class="nav-link">Training</a></li>
+                <li><a href="/detection" class="nav-link active">Detection</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </nav>
-    <h1>Detection Page</h1>
-    <p>Content for detection goes here.</p>
+
+    <main>
+        <section class="detection-hero">
+            <div class="hero-content">
+                <h1>Real-Time 3D Body Language Detection</h1>
+                <p>Analyze human poses and gestures with advanced AI-powered detection</p>
+            </div>
+        </section>
+
+        <section class="detection-interface">
+            <div class="detection-container">
+                <div class="detection-controls">
+                    <h3>Detection Controls</h3>
+                    <div class="control-panel">
+                        <button id="start-camera" class="control-btn">Start Camera</button>
+                        <button id="stop-camera" class="control-btn">Stop Camera</button>
+                        <button id="toggle-3d" class="control-btn">Toggle 3D View</button>
+                        <button id="save-pose" class="control-btn">Save Pose</button>
+                    </div>
+                    
+                    <div class="detection-settings">
+                        <h4>Settings</h4>
+                        <label>
+                            <input type="checkbox" id="show-skeleton" checked> Show Skeleton
+                        </label>
+                        <label>
+                            <input type="checkbox" id="show-landmarks" checked> Show Landmarks
+                        </label>
+                        <label>
+                            <input type="range" id="confidence-threshold" min="0" max="1" step="0.1" value="0.7">
+                            Confidence: <span id="confidence-value">70%</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="detection-view">
+                    <div class="video-container">
+                        <video id="webcam" autoplay muted></video>
+                        <canvas id="pose-canvas"></canvas>
+                    </div>
+                    
+                    <div class="detection-info">
+                        <div class="pose-info">
+                            <h4>Pose Analysis</h4>
+                            <div id="pose-data">
+                                <p>Status: <span id="detection-status">Ready</span></p>
+                                <p>Confidence: <span id="pose-confidence">--</span></p>
+                                <p>Key Points: <span id="key-points-count">--</span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="gesture-info">
+                            <h4>Gesture Recognition</h4>
+                            <div id="gesture-results">
+                                <p>Detected Gesture: <span id="gesture-type">--</span></p>
+                                <p>Emotion: <span id="emotion-type">--</span></p>
+                                <p>Intensity: <span id="gesture-intensity">--</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detection-3d">
+                    <div id="detection-3d-container" class="three-container">
+                        <h4>3D Pose Visualization</h4>
+                        <div id="pose-3d-model"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="detection-results">
+            <h2>Detection Results</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <h4>Current Pose</h4>
+                    <div id="current-pose-display"></div>
+                </div>
+                <div class="result-card">
+                    <h4>Confidence Score</h4>
+                    <div class="confidence-meter">
+                        <div id="confidence-bar"></div>
+                    </div>
+                </div>
+                <div class="result-card">
+                    <h4>Detected Emotions</h4>
+                    <div id="emotion-display"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 3D Body Language Decoder. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/detection.js"></script>
+    <script src="../js/pose-detection.js"></script>
+    <script src="../js/three-detection.js"></script>
 </body>
 </html>

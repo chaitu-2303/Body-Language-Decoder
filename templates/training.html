@@ -3,16 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training Page</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>3D Training - Body Language Decoder</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/@tensorflow/tfjs/4.10.0/tf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/@tensorflow-models/pose-detection/2.1.0/pose-detection.min.js"></script>
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/training">Training</a>
-        <a href="/detection">Detection</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Body<span>3D</span></div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/training" class="nav-link active">Training</a></li>
+                <li><a href="/detection" class="nav-link">Detection</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </nav>
-    <h1>Training Page</h1>
-    <p>Content for training goes here.</p>
+
+    <main>
+        <section class="training-hero">
+            <div class="hero-content">
+                <h1>3D Body Language Training</h1>
+                <p>Train your AI model with interactive 3D pose data and improve detection accuracy</p>
+            </div>
+        </section>
+
+        <section class="training-interface">
+            <div class="training-container">
+                <div class="training-controls">
+                    <h3>Training Controls</h3>
+                    <div class="control-panel">
+                        <button id="start-training" class="control-btn">Start Training</button>
+                        <button id="pause-training" class="control-btn">Pause Training</button>
+                        <button id="reset-model" class="control-btn">Reset Model</button>
+                        <button id="save-model" class="control-btn">Save Model</button>
+                    </div>
+                    
+                    <div class="training-settings">
+                        <h4>Training Settings</h4>
+                        <label>
+                            <input type="range" id="learning-rate" min="0.001" max="0.1" step="0.001" value="0.01">
+                            Learning Rate: <span id="learning-rate-value">0.01</span>
+                        </label>
+                        <label>
+                            <input type="range" id="batch-size" min="1" max="32" step="1" value="16">
+                            Batch Size: <span id="batch-size-value">16</span>
+                        </label>
+                        <label>
+                            <input type="range" id="epochs" min="1" max="100" step="1" value="50">
+                            Epochs: <span id="epochs-value">50</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="training-data">
+                    <h3>Training Data</h3>
+                    <div class="data-upload">
+                        <h4>Upload Training Data</h4>
+                        <label for="training-data-upload">Select Training Data Files:</label>
+                        <input type="file" id="training-data-upload" accept=".json,.csv" multiple title="Upload training data files">
+                        <div id="uploaded-files-list"></div>
+                    </div>
+                    
+                    <div class="pose-capture">
+                        <h4>Capture Training Poses</h4>
+                        <div class="capture-controls">
+                            <button id="start-capture" class="control-btn">Start Capture</button>
+                            <button id="stop-capture" class="control-btn">Stop Capture</button>
+                            <button id="save-pose" class="control-btn">Save Pose</button>
+                        </div>
+                        <div class="video-container">
+                            <video id="training-webcam" autoplay muted></video>
+                            <canvas id="training-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="training-3d">
+                    <h3>3D Training Visualization</h3>
+                    <div id="training-3d-container" class="three-container">
+                        <h4>3D Training Model</h4>
+                        <div id="training-3d-model"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="training-progress">
+            <h2>Training Progress</h2>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="training-progress-bar"></div>
+                </div>
+                <div class="progress-info">
+                    <p>Epoch: <span id="current-epoch">0</span> / <span id="total-epochs">50</span></p>
+                    <p>Loss: <span id="current-loss">--</span></p>
+                    <p>Accuracy: <span id="current-accuracy">--</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="training-results">
+            <h2>Training Results</h2>
+            <div class="results-container">
+                <div class="results-chart">
+                    <h4>Training Performance</h4>
+                    <canvas id="training-chart"></canvas>
+                </div>
+                <div class="model-info">
+                    <h4>Model Information</h4>
+                    <div id="model-summary"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 3D Body Language Decoder. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/training.js"></script>
+    <script src="../js/pose-training.js"></script>
+    <script src="../js/three-training.js"></script>
 </body>
 </html>
